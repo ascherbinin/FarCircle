@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SimpleInputManager : MonoBehaviour {
 
-	private float _lastClickTime = 0.0F;
-	private bool _tap = false;
+	//private float _lastClickTime = 0.0F;
+	//private bool _tap = false;
 
-	[Tooltip("Укажите разницу между кликами")]
-	public float CatchTime = 0.23F;
+	//[Tooltip("Укажите разницу между кликами")]
+	//public float CatchTime = 0.23F;
 
 	void Update ()
 	{
@@ -44,19 +44,19 @@ public class SimpleInputManager : MonoBehaviour {
 		//			}
 		//		}
 
-		if(Input.GetKeyDown(KeyCode.Mouse0))
-		{
-			Invoke("SingleClick", CatchTime);
-
-			if (!_tap) {
-				_tap = true;
-				_lastClickTime = Time.time;
-			}
-			else if (Time.time - _lastClickTime < CatchTime) {
-				CancelInvoke("SingleClick");
-				DoubleClick();
-			}
-		}
+//		if(Input.GetKeyDown(KeyCode.Mouse0))
+//		{
+//			Invoke("SingleClick", CatchTime);
+//
+//			if (!_tap) {
+//				_tap = true;
+//				_lastClickTime = Time.time;
+//			}
+//			else if (Time.time - _lastClickTime < CatchTime) {
+//				CancelInvoke("SingleClick");
+//				DoubleClick();
+//			}
+//		}
 
 
 		#elif UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
@@ -79,13 +79,13 @@ public class SimpleInputManager : MonoBehaviour {
 		#endif
 	}
 
-	void SingleClick () {
-		_tap = false;
+	public void SingleClick () {
+		//_tap = false;
 		SimpleEventManager.TriggerEvent(EventType.Click);
 	}
 
-	void DoubleClick() {
-		_tap = false;
+	public void DoubleClick() {
+		//_tap = false;
 		SimpleEventManager.TriggerEvent(EventType.DoubleClick);
 	}
 		

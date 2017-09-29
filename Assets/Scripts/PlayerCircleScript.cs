@@ -20,7 +20,7 @@ public class PlayerCircleScript : MonoBehaviour {
 	public void SetupPlayer(float circleSpeed, GameObject startOrbit) {
 		_circleSpeed = circleSpeed;
 		_currentOrbit = startOrbit;
-		speed = FULL_CIRCLE / 5 ;/// _circleSpeed; 
+		speed = FULL_CIRCLE / _circleSpeed ;/// _circleSpeed; 
 	}
 
 	void Awake () {
@@ -57,7 +57,7 @@ public class PlayerCircleScript : MonoBehaviour {
 
 	void Update() {
 
-		Debug.Log (speed);
+		//Debug.Log (speed);
 		radius = _currentOrbit.GetComponent<OrbitScript>().radius;
 		angle += speed * Time.deltaTime; 
 		var posX = Mathf.Cos(angle) * radius;
@@ -68,9 +68,10 @@ public class PlayerCircleScript : MonoBehaviour {
 
 	public void ChangeCurrentOrbit(GameObject orbit) {
 		if (orbit != null) {
-			//Debug.Log (orbit.name);
+			//Debug.Log (radius);
+			speed = FULL_CIRCLE / ( _circleSpeed * radius ) ;
 			_currentOrbit = orbit;
-			Debug.Log (_circleSpeed);
+			Debug.Log (FULL_CIRCLE / ( _circleSpeed * radius ));
 		}
 	}
 

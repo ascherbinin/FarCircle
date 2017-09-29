@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null;              
 	public PlayerCircleScript player;                      
-	private int _playerSpeed = 3;                                  
+	public int playerSpeed = 3;                                  
 	private List<GameObject> _orbits = new List<GameObject> ();
 	//Awake is always called before any Start functions
 	void Awake()
@@ -36,11 +37,11 @@ public class GameManager : MonoBehaviour {
 
 	public void AddOrbit(GameObject orbit) {
 		_orbits.Add (orbit);
-		Debug.Log ("ORBITS COUNT: " + _orbits.Count);
+		//Debug.Log ("ORBITS COUNT: " + _orbits.Count);
 
 		if (player.GetCurrentOrbit() == null) {
 			Debug.Log ("SET STARTED ORBIT: " + _orbits.Count);
-			player.SetupPlayer (_playerSpeed, orbit);
+			player.SetupPlayer (playerSpeed, orbit);
 		}
 
 	}
@@ -68,6 +69,5 @@ public class GameManager : MonoBehaviour {
 		else
 			return null;
 	}
-
 
 }

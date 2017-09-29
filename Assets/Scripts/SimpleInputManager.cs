@@ -56,21 +56,6 @@ public class SimpleInputManager : MonoBehaviour {
 				CancelInvoke("SingleClick");
 				DoubleClick();
 			}
-
-//			if(Time.time < _lastClickTime + catchTime)
-//			{
-//				//double click
-//				//print("Double click");
-//				SimpleEventManager.TriggerEvent(EventType.DoubleClick);
-//				_tap = false;
-//				return;
-//			}
-//			_tap = true;
-//			_lastClickTime = Time.time;
-//		}
-//		if (_tap == true && Time.time > _lastClickTime + catchTime) {
-//			_tap = false;
-
 		}
 
 

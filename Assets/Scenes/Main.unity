@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1701364507}
+  playerSpeed: 5
 --- !u!1 &645335877
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnObject: {fileID: 1173922605881586, guid: 8a5c8d4368170944ca59578edd3bacf7,
     type: 2}
-  timeToSpawn: 1.5
+  timeToSpawn: 2.25
 --- !u!1 &1701364504
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,8 @@ public class OrbitScript : MonoBehaviour {
 	public float speed = 1.0F;
 	public float radius = 0;
 
+	private int _index = 0;
+
 	void Awake () {
 		_transform = GetComponent<Transform> ();
 		_collider = GetComponent<CircleCollider2D> ();
@@ -27,5 +29,13 @@ public class OrbitScript : MonoBehaviour {
 			GameManager.instance.RemoveOrbit (gameObject);
 			Destroy (gameObject);
 		}
+	}
+
+	public void SetupIndex(int index) {
+		_index = index;
+	}
+
+	public int GetIndex() {
+		return _index;
 	}
 }

@@ -13,12 +13,14 @@ public class PlayerCircleScript : MonoBehaviour {
 
 	private GameObject _currentOrbit;
 	private Transform _transform;
-	private float _circleSpeed = 1;
+	private float _circleSpeed;
+
+	private const float FULL_CIRCLE = 2 * Mathf.PI;
 
 	public void SetupPlayer(float circleSpeed, GameObject startOrbit) {
 		_circleSpeed = circleSpeed;
 		_currentOrbit = startOrbit;
-		speed = (2 * Mathf.PI) / _circleSpeed; 
+		speed = FULL_CIRCLE / 5 ;/// _circleSpeed; 
 	}
 
 	void Awake () {
@@ -44,19 +46,20 @@ public class PlayerCircleScript : MonoBehaviour {
 	void MoveToCenter() {
 		//_transform.position = new Vector2 (transform.position.x + 0.3F, transform.position.y);
 		ChangeCurrentOrbit(GameManager.instance.GetPreviosOrbit(_currentOrbit));
-		print ("Move to center");
+		//print ("Move to center");
 	}
 
 	void MoveFromCenter() {
 		//_transform.position = new Vector2 (transform.position.x - 0.3F, transform.position.y);
 		ChangeCurrentOrbit(GameManager.instance.GetNextOrbit(_currentOrbit));
-		print("Move from center");
+		//print("Move from center");
 	}
 
 	void Update() {
 
+		Debug.Log (speed);
 		radius = _currentOrbit.GetComponent<OrbitScript>().radius;
-		angle += speed*Time.deltaTime; 
+		angle += speed * Time.deltaTime; 
 		var posX = Mathf.Cos(angle) * radius;
 		var posY = Mathf.Sin(angle) * radius;
 
@@ -65,8 +68,9 @@ public class PlayerCircleScript : MonoBehaviour {
 
 	public void ChangeCurrentOrbit(GameObject orbit) {
 		if (orbit != null) {
-			Debug.Log (orbit.name);
+			//Debug.Log (orbit.name);
 			_currentOrbit = orbit;
+			Debug.Log (_circleSpeed);
 		}
 	}
 

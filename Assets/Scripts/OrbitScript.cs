@@ -8,16 +8,18 @@ public class OrbitScript : MonoBehaviour {
 	private CircleCollider2D _collider;
 	private ParticleSystem _particle;
 	private SpriteRenderer _renderer;
+	private GameObject _border;
 	public float speed = 1.0F;
 	public float radius = 0;
 
 	private int _index = 0;
 	private float _fadeDuration;
 	private Color _spriteColor;
-	private bool _isFading = false;
-	private float _startFadeTime;
+	public bool _isFading = false;
+	public float _startFadeTime;
 
 	void Awake () {
+		_border = GameObject.FindGameObjectWithTag ("Border");
 		_transform = GetComponent<Transform> ();
 		_collider = GetComponent<CircleCollider2D> ();
 		_particle = GetComponent<ParticleSystem> ();
@@ -29,26 +31,24 @@ public class OrbitScript : MonoBehaviour {
 		_fadeDuration = _particle.main.duration / 2.5F;
 		_spriteColor = _renderer.color;
 	}
-		
-	void Update () {
 
-		if (_transform.localScale.x > 20) {
-			if (!_isFading) {
-				_isFading = true;
-				_startFadeTime = Time.time; 
-			}
-		} else {
-			_transform.localScale += Vector3.one * speed * Time.deltaTime;
-			radius = _collider.radius * _transform.localScale.x;
+	void Update () {
+		if (radius > _border.GetComponent<BorderScript> ().radius) {
+			if (!_isFading)
+				_startFadeTime = Time.time;
+			_isFading = true;
 		}
 
 		if (_isFading) {
 			GameManager.instance.RemoveOrbit (gameObject);
 			float t = (Time.time - _startFadeTime) / _fadeDuration;
-			float fade = Mathf.SmoothStep(1, 0, t);
+			float fade = Mathf.SmoothStep (1, 0, t);
 			_spriteColor.a = fade;
 			_renderer.color = _spriteColor;
 			StartCoroutine (DestroyObject ());
+		} else {
+			_transform.localScale += Vector3.one * speed * Time.deltaTime;
+			radius = _collider.radius * _transform.localScale.x;
 		}
 	}
 

@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 198054928373235228}
   m_Layer: 0
   m_Name: Orbit
-  m_TagString: Untagged
+  m_TagString: Orbit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,8 +70,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48cf46afcf926df43ae817dfc0742836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 3
   radius: 0
+  _isFading: 0
+  _startFadeTime: 0
 --- !u!198 &198054928373235228
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -83,7 +85,7 @@ ParticleSystem:
   simulationSpeed: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -221,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 0.503}
+      maxColor: {r: 0.45609862, g: 0.75917244, b: 0.83823526, a: 0.328}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

@@ -527,7 +527,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1701364507}
   playerSpeed: 5
-  scoreText: {fileID: 0}
+  scoreText: {fileID: 1039854020}
 --- !u!114 &591919477
 MonoBehaviour:
   m_ObjectHideFlags: 0

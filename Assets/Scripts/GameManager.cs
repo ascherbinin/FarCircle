@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
 	public Text scoreText;
 
 	private List<GameObject> _orbits = new List<GameObject> ();
+	private int _score;
 	//Awake is always called before any Start functions
 	void Awake()
 	{
@@ -35,7 +36,9 @@ public class GameManager : MonoBehaviour {
 	//Update is called every frame.
 	void Update()
 	{
-
+		if ((int)Time.time % 10 == 0) {
+			AddScore(Random.Range(10,50));
+		}
 	}
 
 	public void AddOrbit(GameObject orbit) {
@@ -71,6 +74,11 @@ public class GameManager : MonoBehaviour {
 			return _orbits [index - 1];
 		else
 			return null;
+	}
+
+	public void AddScore(int score) {
+		_score += score;
+		scoreText.text =  _score.ToString ("0000000000");
 	}
 
 }

@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null;              
 	public PlayerCircleScript player;                      
-	public int playerSpeed = 3;                                  
+	public int playerSpeed = 3;      
+	public Text scoreText;
+
 	private List<GameObject> _orbits = new List<GameObject> ();
 	//Awake is always called before any Start functions
 	void Awake()

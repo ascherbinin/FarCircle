@@ -3,7 +3,7 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 
-public enum EventType {
+public enum SimpleEventType {
 	Click,
 	DoubleClick,
 	ToCenterSwipe,
@@ -12,7 +12,7 @@ public enum EventType {
 
 public class SimpleEventManager : MonoBehaviour {
 
-	private Dictionary <EventType, UnityEvent> eventDictionary;
+	private Dictionary <SimpleEventType, UnityEvent> eventDictionary;
 
 	private static SimpleEventManager eventManager;
 
@@ -42,11 +42,11 @@ public class SimpleEventManager : MonoBehaviour {
 	{
 		if (eventDictionary == null)
 		{
-			eventDictionary = new Dictionary<EventType, UnityEvent>();
+			eventDictionary = new Dictionary<SimpleEventType, UnityEvent>();
 		}
 	}
 
-	public static void StartListening (EventType eventType, UnityAction listener)
+	public static void StartListening (SimpleEventType eventType, UnityAction listener)
 	{
 		UnityEvent thisEvent = null;
 		if (instance.eventDictionary.TryGetValue (eventType, out thisEvent))
@@ -61,7 +61,7 @@ public class SimpleEventManager : MonoBehaviour {
 		}
 	}
 
-	public static void StopListening (EventType eventType, UnityAction listener)
+	public static void StopListening (SimpleEventType eventType, UnityAction listener)
 	{
 		if (eventManager == null) return;
 		UnityEvent thisEvent = null;
@@ -71,7 +71,7 @@ public class SimpleEventManager : MonoBehaviour {
 		}
 	}
 
-	public static void TriggerEvent (EventType eventType)
+	public static void TriggerEvent (SimpleEventType eventType)
 	{
 		UnityEvent thisEvent = null;
 		if (instance.eventDictionary.TryGetValue (eventType, out thisEvent))

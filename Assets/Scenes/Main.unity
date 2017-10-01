@@ -540,6 +540,7 @@ GameObject:
   - component: {fileID: 645335879}
   - component: {fileID: 645335878}
   - component: {fileID: 645335884}
+  - component: {fileID: 645335885}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -639,6 +640,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8038cbc8071c76e4980b47ac2eb9689a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &645335885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 645335877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 3e501e4ef9efe5947989ad4c824eec58, type: 2}
 --- !u!1 &924996783
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,7 +1213,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 097c21d7c83b45f4eb0625bd1ef8f66a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

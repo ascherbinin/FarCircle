@@ -72,8 +72,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   radius: 0
-  _isFading: 0
-  _startFadeTime: 0
 --- !u!198 &198054928373235228
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -133,7 +131,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -354793804
+  randomSeed: 548065051
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3406,7 +3404,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58b1a8c02ec789e4fb04b1af72826143, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

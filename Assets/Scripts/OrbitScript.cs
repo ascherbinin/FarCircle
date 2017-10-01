@@ -14,9 +14,9 @@ public class OrbitScript : MonoBehaviour {
 
 	private int _index = 0;
 	private float _fadeDuration;
-	private Color _spriteColor;
-	public bool _isFading = false;
-	public float _startFadeTime;
+	private Color _matColor;
+	private bool _isFading = false;
+	private float _startFadeTime;
 
 	void Awake () {
 		_border = GameObject.FindGameObjectWithTag ("Border");
@@ -29,7 +29,7 @@ public class OrbitScript : MonoBehaviour {
 	void Start() {
 		radius = _collider.radius * _transform.localScale.x;
 		_fadeDuration = _particle.main.duration / 2.5F;
-		_spriteColor = _renderer.color;
+		_matColor = _renderer.material.color;
 	}
 
 	void Update () {
@@ -43,8 +43,8 @@ public class OrbitScript : MonoBehaviour {
 			GameManager.instance.RemoveOrbit (gameObject);
 			float t = (Time.time - _startFadeTime) / _fadeDuration;
 			float fade = Mathf.SmoothStep (1, 0, t);
-			_spriteColor.a = fade;
-			_renderer.color = _spriteColor;
+			_matColor.a = fade;
+			_renderer.material.color = _matColor;
 			StartCoroutine (DestroyObject ());
 		} else {
 			_transform.localScale += Vector3.one * speed * Time.deltaTime;

@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: c06628d7e12ec8c40aa00ebd6997c3c6
+timeCreated: 1506857048
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Advanced Pixel LCD-7
+  fontNames:
+  - Advanced Pixel LCD-7
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

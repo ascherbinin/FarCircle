@@ -81,12 +81,12 @@ public class SimpleInputManager : MonoBehaviour {
 
 	public void SingleClick () {
 		//_tap = false;
-		SimpleEventManager.TriggerEvent(EventType.Click);
+		SimpleEventManager.TriggerEvent(SimpleEventType.Click);
 	}
 
 	public void DoubleClick() {
 		//_tap = false;
-		SimpleEventManager.TriggerEvent(EventType.DoubleClick);
+		SimpleEventManager.TriggerEvent(SimpleEventType.DoubleClick);
 	}
 		
 }

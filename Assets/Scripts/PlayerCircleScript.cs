@@ -29,16 +29,16 @@ public class PlayerCircleScript : MonoBehaviour {
 
 	void OnEnable ()
 	{
-		SimpleEventManager.StartListening (EventType.Click, MoveToCenter);
-		SimpleEventManager.StartListening (EventType.DoubleClick, MoveFromCenter);
+		SimpleEventManager.StartListening (SimpleEventType.Click, MoveToCenter);
+		SimpleEventManager.StartListening (SimpleEventType.DoubleClick, MoveFromCenter);
 		//SimpleEventManager.StartListening (EventType.ToCenterSwipe, MoveToCenter);
 		//SimpleEventManager.StartListening (EventType.FromCenterSwipe, MoveFromCenter);
 	}
 
 	void OnDisable ()
 	{
-		SimpleEventManager.StopListening (EventType.Click, MoveToCenter);
-		SimpleEventManager.StopListening (EventType.DoubleClick, MoveFromCenter);
+		SimpleEventManager.StopListening (SimpleEventType.Click, MoveToCenter);
+		SimpleEventManager.StopListening (SimpleEventType.DoubleClick, MoveFromCenter);
 		//SimpleEventManager.StopListening (EventType.ToCenterSwipe, MoveToCenter);
 		//SimpleEventManager.StopListening (EventType.FromCenterSwipe, MoveFromCenter);
 	}

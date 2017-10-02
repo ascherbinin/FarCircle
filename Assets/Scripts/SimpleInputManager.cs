@@ -1,14 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class SimpleInputManager : MonoBehaviour {
+
+	private float _firstTapTime = 0f;
+	private float _timeBetweenTaps = 0.2f; // time between taps to be resolved in double tap
+	private bool _doubleTapInitialized;
 
 	//private float _lastClickTime = 0.0F;
 	//private bool _tap = false;
 
 	//[Tooltip("Укажите разницу между кликами")]
 	//public float CatchTime = 0.23F;
+
+	public void OnPointerDown(PointerEventData eventData)
+	{
+		// invoke single tap after max time between taps
+		Invoke("SingleTap", _timeBetweenTaps);
+
+		if (!_doubleTapInitialized)
+		{
+			// init double tapping
+			_doubleTapInitialized = true;
+			_firstTapTime = Time.time;
+		}
+		else if (Time.time - _firstTapTime < _timeBetweenTaps)
+		{
+			// here we have tapped second time before "single tap" has been invoked
+			CancelInvoke("SingleTap"); // cancel "single tap" invoking
+			DoubleTap();
+		}
+	}
+
+	void SingleTap()
+	{
+		_doubleTapInitialized = false; // deinit double tap
+		SingleClick();
+	}
+
+	void DoubleTap()
+	{
+		_doubleTapInitialized = false;
+		DoubleTap ();
+	}
 
 	void Update ()
 	{
@@ -59,22 +95,27 @@ public class SimpleInputManager : MonoBehaviour {
 //		}
 
 
+
+
+		}
+		}
+
 		#elif UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
 
 		for (int i = 0; i < Input.touchCount; ++i) {
 			if (Input.GetTouch(i).phase == TouchPhase.Began) {
 				switch (Input.GetTouch(i).tapCount) {
 				case 1: 
-					SimpleEventManager.TriggerEvent(EventType.Click);
+					SimpleEventManager.TriggerEvent(SimpleEventType.Click);
 					break;
 				case 2:
-					SimpleEventManager.TriggerEvent(EventType.DoubleClick);
+					SimpleEventManager.TriggerEvent(SimpleEventType.DoubleClick);
 					break;
 				default:
 				break;
 				}
 			}
-		}
+//		}
 
 		#endif
 	}

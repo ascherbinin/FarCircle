@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class SpawnerScript : MonoBehaviour {
 
-	public GameObject spawnObject;
+	public GameObject spawnOrbitObject;
+	public GameObject badCircleObject;
 	public float timeToSpawn = 2F;
+
+	private Vector2 _centerPosition = new Vector2(0,0);
 	// Use this for initialization
 	void Start () {
 		InvokeRepeating ("Spawn", 0F, timeToSpawn);
@@ -21,8 +24,14 @@ public class SpawnerScript : MonoBehaviour {
 
 	void Spawn() {
 //		_lastTimeSpawn = 0.0F;
-		var orbit = Instantiate (spawnObject, gameObject.transform.position, Quaternion.identity);
+
+		var orbit = Instantiate (spawnOrbitObject, gameObject.transform.position, Quaternion.identity);
 		orbit.name = string.Format ("Orbit [{0}]", GameManager.instance.GetOrbitsCount () + 1);
 		GameManager.instance.AddOrbit (orbit);
+		if (Random.Range (0, 10) > 2) {
+			Debug.Log ("CREATE BAD CIRCLE AT: " + orbit.name);
+			var bCircle = Instantiate (badCircleObject, _centerPosition, Quaternion.identity);
+			bCircle.GetComponent<BadCircleScript> ().SetOrbit (orbit);
+		}
 	}
 }

@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class PlayerCircleScript : MonoBehaviour {
 
-
-
-
 	float angle = 0;
 	float speed = 0; 
 	float radius = 0;
 
-	private GameObject _currentOrbit;
+	private OrbitScript _currentOrbit;
 	private Transform _transform;
 	private float _circleSpeed;
 
@@ -19,7 +16,7 @@ public class PlayerCircleScript : MonoBehaviour {
 
 	public void SetupPlayer(float circleSpeed, GameObject startOrbit) {
 		_circleSpeed = circleSpeed;
-		_currentOrbit = startOrbit;
+		_currentOrbit = startOrbit.GetComponent<OrbitScript> ();
 		speed = FULL_CIRCLE / _circleSpeed ;/// _circleSpeed; 
 	}
 
@@ -44,21 +41,15 @@ public class PlayerCircleScript : MonoBehaviour {
 	}
 
 	void MoveToCenter() {
-		//_transform.position = new Vector2 (transform.position.x + 0.3F, transform.position.y);
-		ChangeCurrentOrbit(GameManager.instance.GetPreviosOrbit(_currentOrbit));
-		//print ("Move to center");
+		ChangeCurrentOrbit(GameManager.instance.GetPreviosOrbit(_currentOrbit.gameObject));
 	}
 
 	void MoveFromCenter() {
-		//_transform.position = new Vector2 (transform.position.x - 0.3F, transform.position.y);
-		ChangeCurrentOrbit(GameManager.instance.GetNextOrbit(_currentOrbit));
-		//print("Move from center");
+		ChangeCurrentOrbit(GameManager.instance.GetNextOrbit(_currentOrbit.gameObject));
 	}
 
 	void Update() {
-
-		//Debug.Log (speed);
-		radius = _currentOrbit.GetComponent<OrbitScript>().radius;
+		radius = _currentOrbit.radius;
 		angle += speed * Time.deltaTime; 
 		var posX = Mathf.Cos(angle) * radius;
 		var posY = Mathf.Sin(angle) * radius;
@@ -68,14 +59,14 @@ public class PlayerCircleScript : MonoBehaviour {
 
 	public void ChangeCurrentOrbit(GameObject orbit) {
 		if (orbit != null) {
-			//Debug.Log (radius);
 			speed = FULL_CIRCLE / ( _circleSpeed * radius ) ;
-			_currentOrbit = orbit;
-			Debug.Log (FULL_CIRCLE / ( _circleSpeed * radius ));
+			_currentOrbit.RemoveObject(gameObject);
+			_currentOrbit = orbit.GetComponent<OrbitScript>();;
+			_currentOrbit.AddObject(gameObject);
 		}
 	}
 
 	public GameObject GetCurrentOrbit() {
-		return _currentOrbit;
+		return _currentOrbit != null ? _currentOrbit.gameObject : null;
 	}
 }

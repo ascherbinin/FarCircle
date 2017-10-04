@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
 	public Text scoreText;
 
 	private List<GameObject> _orbits = new List<GameObject> ();
+
 	private int _score;
 	//Awake is always called before any Start functions
 	void Awake()

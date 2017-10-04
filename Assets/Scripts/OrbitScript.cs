@@ -18,6 +18,8 @@ public class OrbitScript : MonoBehaviour {
 	private bool _isFading = false;
 	private float _startFadeTime;
 
+	private List<GameObject> _objectsAtOrbit = new List<GameObject> ();
+
 	void Awake () {
 		_border = GameObject.FindGameObjectWithTag ("Border");
 		_transform = GetComponent<Transform> ();
@@ -41,6 +43,7 @@ public class OrbitScript : MonoBehaviour {
 
 		if (_isFading) {
 			GameManager.instance.RemoveOrbit (gameObject);
+			DestroyOrbit ();
 			float t = (Time.time - _startFadeTime) / _fadeDuration;
 			float fade = Mathf.SmoothStep (1, 0, t);
 			_matColor.a = fade;
@@ -60,9 +63,28 @@ public class OrbitScript : MonoBehaviour {
 		return _index;
 	}
 
+	public void AddObject(GameObject go) {
+		_objectsAtOrbit.Add (go);
+	}
+
+	public void RemoveObject(GameObject go) {
+		_objectsAtOrbit.Remove (go);
+	}
+
 	IEnumerator DestroyObject() {
 		_particle.Play ();
 		yield return new WaitForSeconds (_particle.main.duration);
 		Destroy (gameObject);
+	}
+
+	private void DestroyOrbit() {
+		foreach (var item in _objectsAtOrbit) {
+			if (item.tag == "Player") {
+				Debug.Log ("GAME OVER");
+			} else {
+				RemoveObject (item);
+				Destroy (item);
+			}
+		}
 	}
 }

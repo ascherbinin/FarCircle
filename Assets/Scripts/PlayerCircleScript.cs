@@ -28,16 +28,12 @@ public class PlayerCircleScript : MonoBehaviour {
 	{
 		SimpleEventManager.StartListening (SimpleEventType.Click, MoveToCenter);
 		SimpleEventManager.StartListening (SimpleEventType.DoubleClick, MoveFromCenter);
-		//SimpleEventManager.StartListening (EventType.ToCenterSwipe, MoveToCenter);
-		//SimpleEventManager.StartListening (EventType.FromCenterSwipe, MoveFromCenter);
 	}
 
 	void OnDisable ()
 	{
 		SimpleEventManager.StopListening (SimpleEventType.Click, MoveToCenter);
 		SimpleEventManager.StopListening (SimpleEventType.DoubleClick, MoveFromCenter);
-		//SimpleEventManager.StopListening (EventType.ToCenterSwipe, MoveToCenter);
-		//SimpleEventManager.StopListening (EventType.FromCenterSwipe, MoveFromCenter);
 	}
 
 	void MoveToCenter() {
@@ -68,5 +64,11 @@ public class PlayerCircleScript : MonoBehaviour {
 
 	public GameObject GetCurrentOrbit() {
 		return _currentOrbit != null ? _currentOrbit.gameObject : null;
+	}
+
+	void OnCollisionEnter2D(Collision2D coll) {
+		if (coll.gameObject.tag == "Bad") {
+			print ("TOUCH PLAYER");
+		}
 	}
 }

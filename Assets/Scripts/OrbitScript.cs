@@ -78,12 +78,15 @@ public class OrbitScript : MonoBehaviour {
 	}
 
 	private void DestroyOrbit() {
-		foreach (var item in _objectsAtOrbit) {
+		foreach (var item in _objectsAtOrbit.ToArray()) {
 			if (item.tag == "Player") {
 				Debug.Log ("GAME OVER");
 			} else {
-				RemoveObject (item);
-				Destroy (item);
+				_objectsAtOrbit.Remove (item);
+				if (item.GetComponent<BadCircleScript> () != null) {
+					item.GetComponent<BadCircleScript> ().DetachOrbitAndFly ();
+				}
+				//Destroy (item);
 			}
 		}
 	}

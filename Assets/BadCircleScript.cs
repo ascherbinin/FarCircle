@@ -13,13 +13,16 @@ public class BadCircleScript : MonoBehaviour {
 
 	private const float FULL_CIRCLE = 2 * Mathf.PI / 3;
 
+	public Transform _exitVector;
+
 	void Awake () {
 		_transform = GetComponent<Transform> ();
 	}
 
 	// Use this for initialization
 	void Start () {
-		speed = FULL_CIRCLE;	
+		speed = FULL_CIRCLE + Random.Range(0.0F, 1.0F);
+		angle = Random.Range (45, 90);
 	}
 	
 	void Update() {
@@ -30,6 +33,7 @@ public class BadCircleScript : MonoBehaviour {
 			var posY = Mathf.Sin(angle) * radius;
 
 			_transform.position = new Vector2 (posX, posY);
+			_exitVector.LookAt (_currentOrbit.transform);
 		}
 	}
 
@@ -42,5 +46,12 @@ public class BadCircleScript : MonoBehaviour {
 
 	public GameObject GetCurrentOrbit() {
 		return _currentOrbit.gameObject;
+	}
+
+	public void DetachOrbitAndFly() {
+		_currentOrbit = null;
+		speed = 0;
+		var rb = gameObject.AddComponent<Rigidbody2D> ();
+		rb.AddForce ((_exitVector.transform.rotation.y < 0 ? _exitVector.up : -  _exitVector.up) * 15, ForceMode2D.Impulse);
 	}
 }

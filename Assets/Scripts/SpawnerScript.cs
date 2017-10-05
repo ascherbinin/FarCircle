@@ -29,7 +29,6 @@ public class SpawnerScript : MonoBehaviour {
 		orbit.name = string.Format ("Orbit [{0}]", GameManager.instance.GetOrbitsCount () + 1);
 		GameManager.instance.AddOrbit (orbit);
 		if (Random.Range (0, 10) > 2) {
-			Debug.Log ("CREATE BAD CIRCLE AT: " + orbit.name);
 			var bCircle = Instantiate (badCircleObject, _centerPosition, Quaternion.identity);
 			bCircle.GetComponent<BadCircleScript> ().SetOrbit (orbit);
 		}

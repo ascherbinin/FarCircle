@@ -44,10 +44,7 @@ public class GameManager : MonoBehaviour {
 
 	public void AddOrbit(GameObject orbit) {
 		_orbits.Add (orbit);
-		//Debug.Log ("ORBITS COUNT: " + _orbits.Count);
-
 		if (player.GetCurrentOrbit() == null) {
-			Debug.Log ("SET STARTED ORBIT: " + _orbits.Count);
 			player.SetupPlayer (playerSpeed, orbit);
 		}
 

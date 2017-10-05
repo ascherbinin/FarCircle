@@ -52,6 +52,6 @@ public class BadCircleScript : MonoBehaviour {
 		_currentOrbit = null;
 		speed = 0;
 		var rb = gameObject.AddComponent<Rigidbody2D> ();
-		rb.AddForce ((_exitVector.transform.rotation.y < 0 ? _exitVector.up : -  _exitVector.up) * 15, ForceMode2D.Impulse);
+		rb.AddForce ((_exitVector.transform.rotation.y < 0 ? - _exitVector.up :   _exitVector.up) * 15, ForceMode2D.Impulse);
 	}
 }

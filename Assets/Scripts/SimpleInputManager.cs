@@ -16,7 +16,7 @@ public class SimpleInputManager : MonoBehaviour {
 
 	void Update()
 	{
-		#if UNITY_EDITOR || (!UNITY_IPHONE && !UNITY_ANDROID)
+		#if UNITY_EDITOR
 		if (Input.GetMouseButtonDown(0)) {
 			fp = Input.mousePosition;
 			lp = Input.mousePosition;
@@ -40,7 +40,7 @@ public class SimpleInputManager : MonoBehaviour {
 			}
 		}
 
-		#else
+		#elif UNITY_IPHONE || UNITY_ANDROID
 		// Touches and Acceleration from the iOS device
 
 		if (Input.touchCount == 1) // user is touching the screen with a single touch
@@ -63,11 +63,11 @@ public class SimpleInputManager : MonoBehaviour {
 				if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
 				{//It's a drag
 					//check if the drag is vertical or horizontal
-					Debug.Log("Swipe");
+					SimpleEventManager.TriggerEvent(SimpleEventType.Swipe);
 				}
 				else
 				{   //It's a tap as the drag distance is less than 20% of the screen height
-					Debug.Log("Tap");
+					SimpleEventManager.TriggerEvent(SimpleEventType.Tap);
 				}
 			}
 		}

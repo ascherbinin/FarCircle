@@ -9,6 +9,7 @@ public class BadCircleScript : MonoBehaviour {
 	float radius = 0;
 
 	private Transform _transform;
+	private SpriteRenderer _renderer;
 	private OrbitScript _currentOrbit;
 
 	private const float FULL_CIRCLE = 2 * Mathf.PI / 3;
@@ -17,6 +18,7 @@ public class BadCircleScript : MonoBehaviour {
 
 	void Awake () {
 		_transform = GetComponent<Transform> ();
+		_renderer = GetComponent<SpriteRenderer> ();
 	}
 
 	// Use this for initialization
@@ -52,6 +54,9 @@ public class BadCircleScript : MonoBehaviour {
 		_currentOrbit = null;
 		speed = 0;
 		var rb = gameObject.AddComponent<Rigidbody2D> ();
-		rb.AddForce ((_exitVector.transform.rotation.y > 0 ? - _exitVector.up :   _exitVector.up) * 5, ForceMode2D.Impulse);
+		_renderer.color = new Color(_renderer.color.r, _renderer.color.g, _renderer.color.g, 0.5F);
+		//_transform.localScale = new Vector2 (_transform.localScale.x - 0.03F, _transform.localScale.y - 0.03F);
+		rb.mass = 5;
+		rb.AddForce ((_exitVector.transform.rotation.y > 0 ? - _exitVector.up :   _exitVector.up) * 50, ForceMode2D.Impulse);
 	}
 }

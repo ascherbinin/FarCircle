@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 58306134628338828}
   - component: {fileID: 199602481373012850}
   - component: {fileID: 198054928373235228}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Orbit
   m_TagString: Orbit
   m_Icon: {fileID: 0}

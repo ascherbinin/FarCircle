@@ -4,8 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public enum SimpleEventType {
-	Click,
-	DoubleClick,
+	Tap,
+	Swipe,
 	ToCenterSwipe,
 	FromCenterSwipe
 };

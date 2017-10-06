@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour {
 	void Update()
 	{
 		if ((int)Time.time % 10 == 0) {
-			AddScore(Random.Range(10,50));
+			AddScore(Random.Range(10, 50));
 		}
 	}
 

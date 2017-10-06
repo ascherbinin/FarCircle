@@ -26,22 +26,22 @@ public class PlayerCircleScript : MonoBehaviour {
 
 	void OnEnable ()
 	{
-		SimpleEventManager.StartListening (SimpleEventType.Click, MoveToCenter);
-		SimpleEventManager.StartListening (SimpleEventType.DoubleClick, MoveFromCenter);
+		SimpleEventManager.StartListening (SimpleEventType.Tap, MoveToCenter);
+		SimpleEventManager.StartListening (SimpleEventType.Swipe, MoveFromCenter);
 	}
 
 	void OnDisable ()
 	{
-		SimpleEventManager.StopListening (SimpleEventType.Click, MoveToCenter);
-		SimpleEventManager.StopListening (SimpleEventType.DoubleClick, MoveFromCenter);
+		SimpleEventManager.StopListening (SimpleEventType.Tap, MoveToCenter);
+		SimpleEventManager.StopListening (SimpleEventType.Swipe, MoveFromCenter);
 	}
 
 	void MoveToCenter() {
-		ChangeCurrentOrbit(GameManager.instance.GetPreviosOrbit(_currentOrbit.gameObject));
+		ChangeCurrentOrbit(GameManager.instance.GetNextOrbit(_currentOrbit.gameObject));
 	}
 
 	void MoveFromCenter() {
-		ChangeCurrentOrbit(GameManager.instance.GetNextOrbit(_currentOrbit.gameObject));
+		ChangeCurrentOrbit(GameManager.instance.GetPreviosOrbit(_currentOrbit.gameObject));
 	}
 
 	void Update() {

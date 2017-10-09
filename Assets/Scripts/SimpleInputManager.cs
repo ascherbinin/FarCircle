@@ -5,13 +5,13 @@ using UnityEngine.EventSystems;
 
 public class SimpleInputManager : MonoBehaviour {
 
-	private Vector2 fp;   //First touch position
-	private Vector2 lp;   //Last touch position
-	private float dragDistance;  //minimum distance for a swipe to be registered
+//	private Vector2 fp;   //First touch position
+//	private Vector2 lp;   //Last touch position
+//	private float dragDistance;  //minimum distance for a swipe to be registered
 
 	void Start()
 	{
-		dragDistance = Screen.height * 5 / 100; //dragDistance is 5% height of the screen
+//		dragDistance = Screen.height * 5 / 100; //dragDistance is 5% height of the screen
 	}
 
 	void Update()

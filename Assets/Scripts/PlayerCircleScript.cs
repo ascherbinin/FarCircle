@@ -26,14 +26,18 @@ public class PlayerCircleScript : MonoBehaviour {
 
 	void OnEnable ()
 	{
-		SimpleEventManager.StartListening (SimpleEventType.Tap, MoveToCenter);
-		SimpleEventManager.StartListening (SimpleEventType.Swipe, MoveFromCenter);
+//		SimpleEventManager.StartListening (SimpleEventType.Tap, MoveToCenter);
+//		SimpleEventManager.StartListening (SimpleEventType.Swipe, MoveFromCenter);
+		SimpleEventManager.StartListening (SimpleEventType.RightSideTap, MoveToCenter);
+		SimpleEventManager.StartListening (SimpleEventType.LeftSideTap, MoveFromCenter);
 	}
 
 	void OnDisable ()
 	{
-		SimpleEventManager.StopListening (SimpleEventType.Tap, MoveToCenter);
-		SimpleEventManager.StopListening (SimpleEventType.Swipe, MoveFromCenter);
+//		SimpleEventManager.StopListening (SimpleEventType.Tap, MoveToCenter);
+//		SimpleEventManager.StopListening (SimpleEventType.Swipe, MoveFromCenter);
+		SimpleEventManager.StopListening (SimpleEventType.RightSideTap, MoveToCenter);
+		SimpleEventManager.StopListening (SimpleEventType.LeftSideTap, MoveFromCenter);
 	}
 
 	void MoveToCenter() {
@@ -55,7 +59,7 @@ public class PlayerCircleScript : MonoBehaviour {
 
 	public void ChangeCurrentOrbit(GameObject orbit) {
 		if (orbit != null) {
-			speed = FULL_CIRCLE / ( _circleSpeed * radius ) ;
+			//speed = FULL_CIRCLE / ( _circleSpeed * radius ) ;
 			_currentOrbit.RemoveObject(gameObject);
 			_currentOrbit = orbit.GetComponent<OrbitScript>();;
 			_currentOrbit.AddObject(gameObject);

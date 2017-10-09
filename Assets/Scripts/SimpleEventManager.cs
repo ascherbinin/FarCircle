@@ -7,7 +7,9 @@ public enum SimpleEventType {
 	Tap,
 	Swipe,
 	ToCenterSwipe,
-	FromCenterSwipe
+	FromCenterSwipe,
+	LeftSideTap,
+	RightSideTap
 };
 
 public class SimpleEventManager : MonoBehaviour {

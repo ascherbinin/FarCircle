@@ -16,62 +16,96 @@ public class SimpleInputManager : MonoBehaviour {
 
 	void Update()
 	{
+//	======= TAP HALF SCREEN SECTION =======
 		#if UNITY_EDITOR
-		if (Input.GetMouseButtonDown(0)) {
-			fp = Input.mousePosition;
-			lp = Input.mousePosition;
-		}
-		else if (Input.GetMouseButtonUp(0)) {
-			lp = Input.mousePosition;
-
-			Debug.Log(fp);
-			Debug.Log(lp);
-
-			if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
+		if(Input.GetMouseButtonDown(0))
+		{
+			if (Input.mousePosition.x < Screen.width/2)
 			{
-				Debug.Log("Swipe");
-				SimpleEventManager.TriggerEvent(SimpleEventType.Swipe);
+				SimpleEventManager.TriggerEvent(SimpleEventType.LeftSideTap);
 			}
-			else
-			{   
-				Debug.Log("Tap");
-				SimpleEventManager.TriggerEvent(SimpleEventType.Tap);
-
+			else if (Input.mousePosition.x > Screen.width/2)
+			{
+				SimpleEventManager.TriggerEvent(SimpleEventType.RightSideTap);
 			}
+		}
+		else {
+			//Do nothing for now
 		}
 
 		#elif UNITY_IPHONE || UNITY_ANDROID
-		// Touches and Acceleration from the iOS device
-
-		if (Input.touchCount == 1) // user is touching the screen with a single touch
+		if (Input.touchCount > 0)
 		{
-			Touch touch = Input.GetTouch(0); // get the touch
-			if (touch.phase == TouchPhase.Began) //check for the first touch
+			var touch = Input.GetTouch(0);
+			if (touch.position.x < Screen.width/2)
 			{
-				fp = touch.position;
-				lp = touch.position;
+				SimpleEventManager.TriggerEvent(SimpleEventType.LeftSideTap);
 			}
-			else if (touch.phase == TouchPhase.Moved) // update the last position based on where they moved
+			else if (touch.position.x > Screen.width/2)
 			{
-				lp = touch.position;
-			}
-			else if (touch.phase == TouchPhase.Ended) //check if the finger is removed from the screen
-			{
-				lp = touch.position;  //last touch position. Ommitted if you use list
-
-				//Check if drag distance is greater than 20% of the screen height
-				if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
-				{//It's a drag
-					//check if the drag is vertical or horizontal
-					SimpleEventManager.TriggerEvent(SimpleEventType.Swipe);
-				}
-				else
-				{   //It's a tap as the drag distance is less than 20% of the screen height
-					SimpleEventManager.TriggerEvent(SimpleEventType.Tap);
-				}
+				SimpleEventManager.TriggerEvent(SimpleEventType.RightSideTap);
 			}
 		}
 		#endif
+
+//  ======= TAP SWIPE SECTION =======
+
+//		#if UNITY_EDITOR
+//		if (Input.GetMouseButtonDown(0)) {
+//			fp = Input.mousePosition;
+//			lp = Input.mousePosition;
+//		}
+//		else if (Input.GetMouseButtonUp(0)) {
+//			lp = Input.mousePosition;
+//
+//			Debug.Log(fp);
+//			Debug.Log(lp);
+//
+//			if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
+//			{
+//				Debug.Log("Swipe");
+//				SimpleEventManager.TriggerEvent(SimpleEventType.Swipe);
+//			}
+//			else
+//			{   
+//				Debug.Log("Tap");
+//				SimpleEventManager.TriggerEvent(SimpleEventType.Tap);
+//
+//			}
+//		}
+//
+//		#elif UNITY_IPHONE || UNITY_ANDROID
+//		// Touches and Acceleration from the iOS device
+//
+//		if (Input.touchCount == 1) // user is touching the screen with a single touch
+//		{
+//			Touch touch = Input.GetTouch(0); // get the touch
+//			if (touch.phase == TouchPhase.Began) //check for the first touch
+//			{
+//				fp = touch.position;
+//				lp = touch.position;
+//			}
+//			else if (touch.phase == TouchPhase.Moved) // update the last position based on where they moved
+//			{
+//				lp = touch.position;
+//			}
+//			else if (touch.phase == TouchPhase.Ended) //check if the finger is removed from the screen
+//			{
+//				lp = touch.position;  //last touch position. Ommitted if you use list
+//
+//				//Check if drag distance is greater than 20% of the screen height
+//				if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
+//				{//It's a drag
+//					//check if the drag is vertical or horizontal
+//					SimpleEventManager.TriggerEvent(SimpleEventType.Swipe);
+//				}
+//				else
+//				{   //It's a tap as the drag distance is less than 20% of the screen height
+//					SimpleEventManager.TriggerEvent(SimpleEventType.Tap);
+//				}
+//			}
+//		}
+//		#endif
 	}
 
 }

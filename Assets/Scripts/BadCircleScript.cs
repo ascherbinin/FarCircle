@@ -58,5 +58,6 @@ public class BadCircleScript : MonoBehaviour {
 		//_transform.localScale = new Vector2 (_transform.localScale.x - 0.03F, _transform.localScale.y - 0.03F);
 		rb.mass = 5;
 		rb.AddForce ((_exitVector.transform.rotation.y > 0 ? - _exitVector.up :   _exitVector.up) * 50, ForceMode2D.Impulse);
+		rb.gameObject.layer = 11;
 	}
 }

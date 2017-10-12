@@ -9,6 +9,9 @@ public class SimpleInputManager : MonoBehaviour {
 //	private Vector2 lp;   //Last touch position
 //	private float dragDistance;  //minimum distance for a swipe to be registered
 
+
+	bool _isTouch = false;
+
 	void Start()
 	{
 //		dragDistance = Screen.height * 5 / 100; //dragDistance is 5% height of the screen
@@ -34,17 +37,20 @@ public class SimpleInputManager : MonoBehaviour {
 		}
 
 		#elif UNITY_IPHONE || UNITY_ANDROID
-		if (Input.touchCount > 0)
+		if (Input.touchCount > 0)// && !_isTouch)
 		{
-			var touch = Input.GetTouch(0);
-			if (touch.position.x < Screen.width/2)
-			{
-				SimpleEventManager.TriggerEvent(SimpleEventType.LeftSideTap);
-			}
-			else if (touch.position.x > Screen.width/2)
-			{
-				SimpleEventManager.TriggerEvent(SimpleEventType.RightSideTap);
-			}
+			_isTouch = true;
+			var touch = Input.touches[0];
+				if (touch.position.x < Screen.width/2)
+				{
+					SimpleEventManager.TriggerEvent(SimpleEventType.LeftSideTap);
+				}
+				else if (touch.position.x > Screen.width/2)
+				{
+					SimpleEventManager.TriggerEvent(SimpleEventType.RightSideTap);
+				}
+				//_isTouch = false;
+			//}
 		}
 		#endif
 
